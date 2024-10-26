@@ -1,0 +1,63 @@
+/* Full height and width for the main container */
+.main {
+    background-color: rgb(38, 36, 36);
+    width: 97%; /* Full width */
+    height: 98%; /* Full viewport height */
+    margin-top: 5px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width/height */
+    border: 1px solid rgb(89, 87, 87);
+  }
+  
+  /* Adjust the search container to take a percentage of the available space */
+  .search-container {
+    position: relative;
+    width: 100%; /* Relative width */
+    height: 100%; /* Relative height */
+  }
+  
+  /* Positioning the search icon */
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    fill: #888;
+    pointer-events: none; /* Prevent click on the icon */
+  }
+  
+  /* Responsive search input field */
+  .search-input {
+    width: 100%; /* Take full width of the container */
+    height: 100%; /* Take full height of the container */
+    padding-left: 40px; /* Space for the search icon */
+    border: none;
+    border: 1px solid grey;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1.5rem; /* Make the text size proportional */
+    transition: border-bottom 0.3s, background-color 0.3s;
+  }
+  
+  /* Placeholder styles */
+  .search-input::placeholder {
+    color: #888;
+  }
+  
+  /* Focus styles for input */
+  .search-input:focus {
+    border-bottom: 2px solid #1db954; /* Green border at the bottom */
+    background-color: #3b3b3b;
+  }
+  
+  /* Focused placeholder styles */
+  .search-input:focus::placeholder {
+    color: #444;
+  }
+  

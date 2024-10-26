@@ -1,0 +1,15 @@
+<div 
+  class="conversation" 
+  [class.selected]="isSelected" 
+  (click)="onConversationClick()"
+>
+    <img [src]="contactProfilePic" alt="Profile picture of {{ contactFullName }}" />
+    <div class="conversation-details">
+        <h4>{{ contactFullName }}</h4>
+        <p [innerHTML]="getDisplayMessage()"></p>
+    </div>
+    <div class="conversation-time">
+        <div class="time" *ngIf="getDisplayTime()">{{ getDisplayTime() }}</div>
+        <div class="date" *ngIf="getDisplayDate()">{{ getDisplayDate() }}</div>
+    </div>
+</div>

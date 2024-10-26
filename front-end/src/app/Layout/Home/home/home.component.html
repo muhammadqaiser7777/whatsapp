@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <!-- For larger screens, always show both sidebar and display -->
+    <ng-container *ngIf="!isMobileView">
+      <div class="sidebar">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="display">
+        <app-display></app-display>
+      </div>
+    </ng-container>
+  
+    <!-- For mobile view -->
+    <ng-container *ngIf="isMobileView">
+      <!-- Show sidebar if all services are null -->
+      <ng-container *ngIf="!isAnyServiceSelected">
+        <div class="sidebar">
+          <app-sidebar></app-sidebar>
+        </div>
+      </ng-container>
+      
+      <!-- Show display if any service is selected -->
+      <ng-container *ngIf="isAnyServiceSelected">
+        <div class="display">
+          <app-display></app-display>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  

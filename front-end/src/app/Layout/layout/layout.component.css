@@ -1,0 +1,75 @@
+.container-fluid.min-vh-100 {
+    background-color: #313131;
+    color: #e0e0e0;
+    display: flex;
+}
+
+.navbar {
+    width: 5.5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.bottom {
+    margin-top: auto;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.nav-item.nav-link.active-link{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid green;
+    padding-left: 8px; 
+    padding-right: 8px;
+    background-color: #606060;
+    border-radius: 10px;
+}
+
+.divider {
+    border-top: 3px solid #515961;
+    width: 48px;
+}
+
+.logout{
+    background-color: transparent;
+    border: none;
+    color:#8f8888
+  }
+
+
+  .dynamic-component-class {
+    flex: 1; /* Take up remaining space */
+    margin-left: 4%; /* Offset for the sidebar width */
+    display: flex;
+    flex-direction: column; /* Ensure proper content flow */
+    overflow: auto;
+    background-color: #313131; /* Optional */
+    box-sizing: border-box;
+}
+
+@media(max-width:750px){
+    .navbar {
+        width: 10%;
+    }
+}

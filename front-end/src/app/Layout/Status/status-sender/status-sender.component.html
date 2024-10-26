@@ -1,0 +1,21 @@
+<div class="status-list">
+    <div
+      *ngFor="let status of statusList"
+      class="status-item"
+      [class.selected]="status === selectedStatus"
+      (click)="selectStatus(status)"
+    >
+      <div class="status-avatar">
+        <img [src]="status.profilePic" alt="{{ status.username }}" class="profile-pic">
+      </div>
+      <div class="status-details">
+        <div class="status-name">{{ status.fullName }}</div>
+        <div class="status-time">
+          <span *ngIf="getDisplayDate(status.recent_status)">
+            {{ getDisplayDate(status.recent_status) }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,409 @@
+<div class="message-container" 
+     [ngClass]="{'sent-message': isSentMessage(), 'received-message': !isSentMessage()}">
+  
+  <!-- Image Message -->
+  <div *ngIf="message.message_type === 'image'" class="message-content image-message"         
+  (mouseover)="showArrow(message, true)" 
+  (mouseleave)="showArrow(message, false)">
+    <img [src]="message.media_path" [alt]="message.caption || 'Image'" class="message-image"/>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+    <!-- Arrow icon (hover for sent messages) -->
+    <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+      </svg>
+    </span>
+
+    <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+      <ul>
+        <li class="special-li">
+          <button (click)="onReact('😊',message)">😊</button>
+          <button (click)="onReact('😂',message)">😂</button>
+          <button (click)="onReact('❤️',message)">❤️</button>
+          <button (click)="toggleEmojiPicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Video Message -->
+  <div *ngIf="message.message_type === 'video'" class="message-content video-message"
+  (mouseover)="showArrow(message, true)" 
+  (mouseleave)="showArrow(message, false)">
+    <video [src]="message.media_path" controls class="message-video">
+      Your browser does not support the video tag.
+    </video>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+    <!-- Arrow icon (hover for sent messages) -->
+    <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+      </svg>
+    </span>
+
+    <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+      <ul>
+        <li class="special-li">
+          <button (click)="onReact('😊',message)">😊</button>
+          <button (click)="onReact('😂',message)">😂</button>
+          <button (click)="onReact('❤️',message)">❤️</button>
+          <button (click)="toggleEmojiPicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Audio Message -->
+  <div *ngIf="message.message_type === 'audio'" class="message-content audio-message"
+  (mouseover)="showArrow(message, true)" 
+  (mouseleave)="showArrow(message, false)">
+    <audio [src]="message.media_path" controls class="message-audio">
+      Your browser does not support the audio tag.
+    </audio>
+
+    <!-- Arrow icon (hover for sent messages) -->
+    <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+      </svg>
+    </span>
+
+    <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+      <ul>
+        <li class="special-li">
+          <button (click)="onReact('😊',message)">😊</button>
+          <button (click)="onReact('😂',message)">😂</button>
+          <button (click)="onReact('❤️',message)">❤️</button>
+          <button (click)="toggleEmojiPicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+  <!-- Poll Message -->
+<div *ngIf="message.message_type === 'poll'" class="poll-container">
+
+  <div *ngIf="message.message_type === 'poll'" class="poll-message">
+    <h3 class="poll-question">{{ message.question || 'No question available' }}</h3>
+    
+    <div *ngIf="message?.options?.length;" class="poll-options">
+      <div *ngFor="let option of message.options" class="poll-option">
+        
+        <div class="option-container">
+          <input type="checkbox" 
+         id="option-{{ option.option_id }}" 
+         (change)="onVoteChange(option, $event)" 
+         [checked]="isVoted(option)"
+         style="display: none;">
+<label for="option-{{ option.option_id }}" class="circular-label">
+
+   
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-check-lg" viewBox="0 0 16 16">
+              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+            </svg>
+          </label>
+          <span class="option-text">{{ option.option_name || 'No option name' }}</span>
+          
+          <span class="option-votes">{{ option.number_of_votes || 0 }}</span>
+        </div>
+
+        <div class="success-bar">
+          <div class="success-bar-fill" [ngStyle]="{ 'width': getVotePercentage(option) + '%' }"></div>
+        </div>
+      </div>
+      <div class="totalvote">Total Votes: {{ message.total_votes }}</div>
+ 
+ <!-- View Votes Button -->
+<div class="button-container">
+  <button class="view-modal" (click)="openVoteModal()">View Votes</button>
+</div>
+
+<ng-template #noOptions>
+  <p>No options available</p>
+</ng-template>
+
+<!-- Vote Details Modal -->
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content bg-dark">
+    <span class="close-button" (click)="closeVoteModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+      </svg>
+    </span>
+    <h2>Question: {{ message.question }}</h2>
+    <hr>
+    <div *ngFor="let option of message.options">
+      <h3>Option: {{ option.option_name }} <div class="lvl"> {{ option.number_of_votes }}</div></h3>
+      <ul>
+        <li *ngFor="let voter of getVoterList(option.voters)">
+          <img [src]="voter.sender_profilePic" alt="{{ voter.sender_fullName }}" class="sender-profile-pic"/>
+          {{ voter.sender_fullName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+  <!-- PDF Message -->
+  <div *ngIf="message.message_type === 'pdf'" class="message-content file-message"
+  (mouseover)="showArrow(message, true)" 
+       (mouseleave)="showArrow(message, false)">
+       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
+      </svg>
+    <a [href]="message.media_path" target="_blank">{{ message.fileName || 'Download PDF' }}</a>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+       <!-- Arrow icon (hover for sent messages) -->
+       <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+        </svg>
+      </span>
+  
+        <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+          <ul>
+            <li class="special-li">
+              <button (click)="onReact('😊',message)">😊</button>
+              <button (click)="onReact('😂',message)">😂</button>
+              <button (click)="onReact('❤️',message)">❤️</button>
+              <button (click)="toggleEmojiPicker()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+  </div>
+
+  <!-- Word Message -->
+  <div *ngIf="message.message_type === 'word'" class="message-content file-message"
+  (mouseover)="showArrow(message, true)" 
+       (mouseleave)="showArrow(message, false)">
+       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-earmark-word-fill" viewBox="0 0 16 16">
+        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M5.485 6.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 9.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z"/>
+      </svg>
+    <a [href]="message.media_path" target="_blank">{{ message.fileName || 'Download Word Document' }}</a>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+       <!-- Arrow icon (hover for sent messages) -->
+       <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+        </svg>
+      </span>
+  
+        <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+          <ul>
+            <li class="special-li">
+              <button (click)="onReact('😊',message)">😊</button>
+              <button (click)="onReact('😂',message)">😂</button>
+              <button (click)="onReact('❤️',message)">❤️</button>
+              <button (click)="toggleEmojiPicker()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+  </div>
+
+  <!-- Excel Message -->
+  <div *ngIf="message.message_type === 'excel'" class="message-content file-message"
+  (mouseover)="showArrow(message, true)" 
+       (mouseleave)="showArrow(message, false)">
+       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filetype-xls" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM6.472 15.29a1.2 1.2 0 0 1-.111-.449h.765a.58.58 0 0 0 .254.384q.106.073.25.114.143.041.319.041.246 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.152-.12-.462-.193l-.619-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.527-.422.338-.15.777-.149.457 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.247-.181.9.9 0 0 0-.369-.068q-.325 0-.513.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .405.175l.62.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56 0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-2.945-3.358h-.893L1.81 13.37h-.036l-.832-1.438h-.93l1.227 1.983L0 15.931h.861l.853-1.415h.035l.85 1.415h.908L2.253 13.94zm2.727 3.325H4.557v-3.325h-.79v4h2.487z"/>
+      </svg>
+    <a [href]="message.media_path" target="_blank">{{ message.fileName || 'Download Excel Document' }}</a>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+       <!-- Arrow icon (hover for sent messages) -->
+       <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+        </svg>
+      </span>
+  
+        <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+          <ul>
+            <li class="special-li">
+              <button (click)="onReact('😊',message)">😊</button>
+              <button (click)="onReact('😂',message)">😂</button>
+              <button (click)="onReact('❤️',message)">❤️</button>
+              <button (click)="toggleEmojiPicker()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+  </div>
+
+  <!-- PowerPoint Message -->
+  <div *ngIf="message.message_type === 'ppt'" class="message-content file-message"
+  (mouseover)="showArrow(message, true)" 
+       (mouseleave)="showArrow(message, false)">
+       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filetype-ppt" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m2.817-1.333h-1.6v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474.162-.302.161-.677 0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H4.15V12.48h.66q.327 0 .512.181.185.183.185.522m2.767-.67v3.336H7.48v-3.337H6.346v-.662h3.065v.662z"/>
+      </svg>
+    <a [href]="message.media_path" target="_blank">{{ message.fileName || 'Download PowerPoint Presentation' }}</a>
+    <p *ngIf="message.caption">{{ message.caption }}</p>
+
+       <!-- Arrow icon (hover for sent messages) -->
+       <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+        </svg>
+      </span>
+  
+        <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+          <ul>
+            <li class="special-li">
+              <button (click)="onReact('😊',message)">😊</button>
+              <button (click)="onReact('😂',message)">😂</button>
+              <button (click)="onReact('❤️',message)">❤️</button>
+              <button (click)="toggleEmojiPicker()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+  </div>
+
+  <!-- Deleted Sent Message -->
+  <div *ngIf="message.message_type === 'text' && isSentMessage() && message.msg_status === 'Deleted'" class="message-content deleted-message">
+    {{ message.message || 'No message content' }}
+  </div>
+  
+  <!-- Sent Text Message -->
+  <div *ngIf="message.message_type === 'text' && isSentMessage() && message.msg_status !== 'Deleted'" class="message-content text-message"
+       (mouseover)="showArrow(message, true)" 
+       (mouseleave)="showArrow(message, false)">
+    <!-- Arrow icon (hover for sent messages) -->
+    <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+      </svg>
+    </span>
+    <!-- Message content -->
+    {{ message.message || 'No message content' }}
+    <!-- Dropdown menu -->
+    <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+      <ul>
+        <li class="special-li">
+          <button (click)="onReact('😊',message)">😊</button>
+          <button (click)="onReact('😂',message)">😂</button>
+          <button (click)="onReact('❤️',message)">❤️</button>
+          <button (click)="toggleEmojiPicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+          </button>
+        </li>
+        <li (click)="onEditMessage(message)">Edit</li>
+        <li (click)="onDeleteMessage(message)">Delete</li> 
+      </ul>
+    </div>
+  </div>
+
+  <!-- Received Text Message -->
+  <div *ngIf="message.message_type === 'text' && message.msg_status !=='Deleted' && !isSentMessage()" class="message-content text-message"
+  (mouseover)="showArrow(message, true)" 
+  (mouseleave)="showArrow(message, false)">
+    {{ message.message || 'No message content' }}
+
+    <!-- Arrow icon (hover for sent messages) -->
+    <span class="arrow-icon" *ngIf="message.showArrow" (click)="toggleDropdown(message)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+      </svg>
+    </span>
+
+    <div *ngIf="message.showDropdown" class="dropdown-menu" [ngStyle]="{'z-index': '9999', 'position': 'absolute', 'bottom': '30px'}">
+      <ul>
+        <li class="special-li">
+          <button (click)="onReact('😊',message)">😊</button>
+          <button (click)="onReact('😂',message)">😂</button>
+          <button (click)="onReact('❤️',message)">❤️</button>
+          <button (click)="toggleEmojiPicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="message.message_type === 'text' && message.msg_status ==='Deleted' && !isSentMessage()" class="message-content text-message">
+    {{ message.message || 'No message content' }}
+  </div>
+
+  <!-- Timestamp -->
+  <span class="timestamp">{{ message.updated_at | date:'short' }}</span>
+  <div class="edited" *ngIf="message.msg_status === 'Edited'">Edited</div>
+
+  <!-- Reaction Button -->
+   <div class="reaction-btn">
+    <button *ngIf="reactions.length > 0" (click)="openReactionsModal()">
+      <!-- Show first three reactions, if more than three, show '+ more' -->
+      <span *ngFor="let reaction of reactions.slice(0, 3)">
+        {{ reaction.reaction}} 
+      </span>
+      <span *ngIf="reactions.length > 3">+ more</span>
+    </button>
+   </div>
+
+
+<!-- Modal -->
+<div class="reaction-modal" *ngIf="isReactionsModalOpen">
+  <div class="reaction-modal-content">
+    <h3>Reactions</h3>
+    <ul>
+      <li *ngFor="let reaction of reactions">
+        <img [src]="reaction.senderProfilePic" alt="Profile Picture" width="40" height="40">
+        <span>{{ reaction.senderFullName }}</span>
+        <span>{{ reaction.reaction }}</span>
+        
+        <!-- Show remove button if the current user's ID matches the senderId -->
+        <button style="color: rgb(175, 195, 24);" *ngIf="reaction.senderId === this.authUserId" (click)="removeReaction(reaction, message)">
+          Remove
+        </button>
+      </li>
+    </ul>
+    <button class="reaction-close-btn" (click)="closeReactionsModal()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+    </svg></button>
+  </div>
+</div>
+
+
+</div>
+
+<div #scrollControl></div>
+ 
+<emoji-mart *ngIf="showEmojiPicker" (emojiSelect)="onEmojiSelected($event)" class="emoji-picker"></emoji-mart>

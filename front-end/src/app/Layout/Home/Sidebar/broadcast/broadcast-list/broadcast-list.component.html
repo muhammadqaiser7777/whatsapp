@@ -1,0 +1,12 @@
+<div class="container-fluid">
+        <div *ngIf="isLoading" class="loading">
+            <div class="loader">
+            <h1>L
+            <div class="spinner"></div>
+            ading ...</h1>
+          </div>
+        </div>
+        <div *ngIf="!isLoading && broadcastList.length === 0">You haven't created a broadcast yet</div>
+        <div *ngIf="isError">Failed to load brodcast.</div>
+        <app-broadcast *ngIf="broadcastList.length > 0" [broadcastList]="broadcastList"></app-broadcast>
+</div>

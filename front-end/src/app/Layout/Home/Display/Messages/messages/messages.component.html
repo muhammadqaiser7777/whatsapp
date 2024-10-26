@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div #messageContainer class="message-container">
+    <div class="messages" *ngFor="let message of messages; let last = last">
+      <app-message [message]="message"></app-message>
+    </div>
+ 
+  </div>
+
+  <div class="no" *ngIf="messages.length === 0">
+    <p>Start <span style="color: green;">Conversation</span>.</p>
+  </div>
+  
+  <div class="input">
+    <app-message-input (messageSent)="appendMessage($event)" (pollSent)="appendMessage($event)"></app-message-input>  </div>
+</div>

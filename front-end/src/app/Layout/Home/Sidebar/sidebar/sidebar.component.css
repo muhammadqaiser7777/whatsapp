@@ -1,0 +1,75 @@
+.contaner-fluid{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.search{
+    height: 8vh;
+    width: 100%;
+    border-right: 8px solid rgb(85, 84, 84);
+}
+
+.nav-bar{
+    height: 8vh;
+    width: 100%;
+    border-right: 8px solid rgb(85, 84, 84);
+}
+
+
+.nav-link {
+    width: 100%;
+    display: flex;
+    height: 8vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #262424;
+    border-radius: 10px;
+}
+
+.nav-item{
+    width: 33%;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    height: 6vh;
+    margin: 2px;
+    border-radius: 10px;
+}
+
+.nav-item:hover, .active-link{
+    border-bottom: 3px solid green;
+    color: green;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: fill 0.3s ease;
+}
+
+.divider{
+    width: 100%;
+    color: #ccc;
+  }
+
+.body{
+    height: 83vh;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+.contact-list {
+    position: fixed; /* Required for z-index to work */
+    bottom: 15px; /* Margin of 50px from the bottom */
+    left: 28%; /* 33% from the left side */
+    z-index: 1000; /* Make sure the button is above other components */
+  }
+
+@media(max-width:750px){
+    .contact-list{
+        left:70%
+    }
+}

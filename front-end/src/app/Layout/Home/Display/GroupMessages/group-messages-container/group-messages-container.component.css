@@ -1,0 +1,40 @@
+.container-fluid {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    box-sizing: border-box; /* Ensure padding and borders are included in width calculations */
+}
+
+.head, .body {
+    width: 100%; /* Ensure each section takes full width */
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.head {
+    height: 10vh; /* Fixed height for header */
+    background-color: #242424;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /* Space out elements in the head */
+}
+
+.body {
+    flex: 1; /* Allow body to take the remaining available space */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+    display: flex;
+    flex-direction: column; /* Allow internal elements to stack vertically */
+    align-items: stretch; /* Ensure internal elements stretch fully */
+}
+
+
+
+@media(max-width: 750px) {
+    .head {
+        padding-left: 6.5%; /* Adjust padding for smaller screens */
+        padding-right: 6.5%;
+    }
+}

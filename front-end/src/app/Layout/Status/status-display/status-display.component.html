@@ -1,0 +1,187 @@
+<ng-container *ngIf="statusService; else defaultTemplate">
+    <div class="status-container">
+      <ng-container *ngTemplateOutlet="showStatusTemplate"></ng-container>
+    </div>
+  </ng-container>
+  
+  <ng-template #defaultTemplate>
+    <div class="container-fluid">
+      <div class="sample">
+        <button class="back-button" (click)="onBackButtonClick()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+        </svg>
+      </button>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="heading"><b>WhatsApp</b></h1><br>
+          <h3>Update Your Status Here</h3>
+        </div>
+      </div>
+      <div class="send">
+        <form (ngSubmit)="onSend()" #messageForm="ngForm" class="msg-input-container" autocomplete="off">
+          <!-- Upload Button -->
+          <button type="button" class="upload" (click)="closeEmojiPickerOnUpload()" (click)="fileInput.click()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+            </svg>
+          </button>
+          
+          <!-- Hidden File Input -->
+          <input type="file" #fileInput (change)="onFileSelected($event)" name="media" hidden>
+        
+          <!-- Emoji Button -->
+          <button type="button" class="emojis" (click)="togglePicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-emoji-smile-upside-down" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1m0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0"/>
+              <path d="M4.285 6.433a.5.5 0 0 0 .683-.183A3.5 3.5 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.5 4.5 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683M7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5m4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5"/>
+            </svg>
+          </button>
+        
+          <!-- Emoji Picker Component -->
+          <emoji-mart *ngIf="showPicker" (emojiSelect)="onEmojiSelect($event)" class="emoji-picker"></emoji-mart>
+        
+          <!-- Input Field -->
+          <textarea
+            class="msg-input"
+            [(ngModel)]="text_status"
+            (keydown)="onKeyDown($event)"
+            placeholder="Type your message..."
+            name="message" 
+            [disabled]="selectedFile !== null"
+            required
+          ></textarea>
+        
+          <!-- Send Button -->
+          <button type="submit" class="send-button" [disabled]="selectedFile !== null">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+              <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+            </svg>
+          </button>
+        </form>
+            
+            <!-- File Preview and Caption Containers -->
+            <div *ngIf="selectedFile && fileType === 'image' || fileType === 'video'" class="file-preview-container">
+              
+              <div class="file-container">
+            
+                <img *ngIf="fileType === 'image'" [src]="filePreview" alt="File Preview" class="file-preview-image">
+            
+                <video *ngIf="fileType === 'video'" controls [src]="filePreview" class="file-preview-video"></video>
+                
+                <div class="close-button">
+                  <button type="button" class="close-button" (click)="clearFileSelection()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+                      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                    </svg>
+                  </button>
+                </div>    
+            
+              </div>
+            
+            
+              <div class="caption-container">
+                  <textarea [(ngModel)]="status_caption" class="caption-input" placeholder="Add a caption..."></textarea>
+                  <button
+                  type="button"
+                  class="upload"
+                  (click)="togglePickerInPreview()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-smile-upside-down" viewBox="0 0 16 16">
+                      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1m0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0"/>
+                      <path d="M4.285 6.433a.5.5 0 0 0 .683-.183A3.5 3.5 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.5 4.5 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683M7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5m4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="showPickerInPreview">
+                    <emoji-mart (emojiSelect)="onEmojiSelectInPreview($event)"></emoji-mart>
+                  </div>
+                        <button type="button" class="perview-send-button" (click)="onSend()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                      <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                    </svg>
+                  </button>
+                </div>
+            
+            
+            </div>
+            
+            <!-- Audio Preview Container -->
+            <div *ngIf="selectedFile && fileType === 'audio'" class="file-preview-container">
+              <audio controls [src]="filePreview" class="file-preview-audio"></audio>
+              <div class="audio-close-button">
+                <button type="button" class="close-button-in-audio" (click)="clearFileSelection()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="send-button-in-audio">
+                <button type="button" (click)="onSend()" class="audio-send-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+      </div>
+  </div>
+  </ng-template>
+  
+  <ng-template #showStatusTemplate>
+    <div class="head">
+      <ng-container *ngIf="statusData && statusData.length > 0">
+        <button class="back-btn" (click)="onBackBtnClick()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+        </svg>
+      </button>
+        <img class="sender-img" [src]="statusData[0].profilePic" alt="{{ statusData[0].fullName }}">
+        <h2 class="sender-name">{{ statusData[0].fullName }}</h2>
+      </ng-container>
+    </div>
+  
+    <div id="statusCarousel" class="carousel slide" (slid.bs.carousel)="updateCurrentSlideIndex($event)">
+      <div class="carousel-inner" >
+        <!-- Display all statuses in carousel items -->
+        <div *ngFor="let status of statusData; let i = index" 
+             class="carousel-item" [class.active]="i === 0" >
+          <div class="body-item">
+            <div class="counter">
+              <p class="count">{{ currentSlideIndex + 1 }} / {{ totalSlides }}</p>
+            </div>
+            <h3 class="text-status" *ngIf="status.text_status">{{ status.text_status }}</h3>
+            <img [ngClass]="'img-status'" *ngIf="status.status_type === 'image'" [src]="status.media_path" class="img-fluid" alt="Status Image">            <audio *ngIf="status.status_type === 'audio'" [src]="status.media_path" controls></audio>
+            <video [ngClass]="'video-status'" *ngIf="status.status_type === 'video'" [src]="status.media_path" controls></video>  
+            <div class="info">
+              <p class="status-caption">{{ status.status_caption }}</p>
+              <small style="color: rgb(103, 103, 117); padding: 5px;" >{{ getDisplayDate(status.created_at) }}</small>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Carousel controls -->
+      <div class="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#statusCarousel" data-bs-slide="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="green" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+          </svg>
+          <span class="visually-hidden">Previous</span>
+        </button>
+      </div>
+  
+      <div class="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#statusCarousel" data-bs-slide="next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="green" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+          </svg>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>

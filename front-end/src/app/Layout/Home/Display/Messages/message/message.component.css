@@ -1,0 +1,418 @@
+.message-container {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    max-width: 60%; /* Limit the width */
+    clear: both; /* Ensures messages clear floats */
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+
+  
+  .timestamp {
+    color: #504f4f;
+  }
+  
+  .message-content {
+    position: relative;
+    margin-top: 5px;
+  }
+  
+  .message-image, .message-video {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    border-radius: 5px;
+  }
+  
+  .sent-message {
+    align-self: flex-end;
+    background-color: rgba(4, 69, 63, 255); /* WhatsApp green for sent messages */
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 75%;
+    width: fit-content;
+    word-wrap: break-word;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+  }
+  
+  .received-message {
+    align-self: flex-start;
+    background-color: rgba(33, 46, 54, 255); /* WhatsApp grey for received messages */
+    padding: 10px 10px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 75%;
+    width: fit-content;
+    word-wrap: break-word;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-right: auto;
+  }
+  
+  ul {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+  }
+  
+
+/* General Poll Message Container */
+.poll-container{
+  max-width: 100%;
+  width: 300px;
+}
+
+.poll-message {
+  border-radius: 10px;
+  padding: 15px;
+  color: #adb09e;
+  font-family: Arial, sans-serif;
+}
+
+.poll-message h3 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.poll-message p {
+  color: #adb09e;
+  margin: 0;
+}
+
+.poll-options {
+  margin-top: 10px;
+}
+
+/* Circular Checkbox Styling */
+.circular-label {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.circular-label svg {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+.tick-mark {
+  stroke: none;
+}
+
+input[type="checkbox"]:checked + .circular-label {
+  background-color: #06cf9c;
+}
+
+input[type="checkbox"]:checked + .circular-label .tick-mark {
+  stroke: white;
+}
+
+/* Poll Option Row */
+.poll-option {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.option-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.option-text {
+  margin-left: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.option-votes {
+  margin-left: auto;
+  color: white;
+  font-size: 14px;
+}
+
+.voter-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+/* Vote Success Bar */
+.success-bar {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.success-bar-fill {
+  height: 100%;
+  background-color: #06cf9c;
+  transition: width 0.3s ease;
+}
+
+
+/* View Votes Section */
+.view-votes {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#polldetailsopen {
+  color: #06cf9c;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#polldetailsopen:hover {
+  color: #34d399;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+
+  .poll-message {
+    padding: 10px;
+  }
+
+  .option-text {
+    font-size: 14px;
+  }
+
+  .option-votes {
+    font-size: 12px;
+  }
+
+  .voter-img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 20px;
+  float: right;
+}
+
+.sender-profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.lvl{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: green;  
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+}
+
+.view-modal{
+  border: none;
+  color: gold;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  width: 100%; /* Ensure the container takes full width */
+}
+
+
+
+.arrow-icon {
+  cursor: pointer;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.dropdown-menu {
+  display: block; /* Show dropdown menu */
+  background-color: rgb(53, 51, 51); /* Dropdown background */
+  color: white;
+  border-radius: 4px; /* Optional rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  position: absolute; /* Position it absolutely */
+  z-index: 999; /* Ensure it stays above other elements */
+  padding: 5px 0; /* Padding around the menu */
+  border-radius: 10px;
+  left:-12% ;
+}
+
+/* Adjust the UL to be flexible */
+.dropdown-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Adjust the LI styles */
+.dropdown-menu ul li {
+  width: 100%;
+  cursor: pointer;
+  padding: 5px 10px; /* Add some padding to make it easier to click */
+  border-radius: 10px;
+}
+
+.normal-li:hover {
+  background-color: #716c6c;
+}
+
+
+.edited{
+  margin-left:10px;
+  float: right;
+  color: #504f4f;
+}
+
+.special-li:hover{
+  background-color: transparent;
+}
+
+ul li button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+ul li button:hover{
+  background-color: #716c6c;
+}
+
+/* Style the emoji picker */
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.emoji-picker button {
+  font-size: 20px;
+  margin: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+emoji-mart {
+  position: relative;
+  top: 10%;
+  left: 40%;
+  background-color: transparent;
+  border-radius: 10px;
+  z-index: 10000; /* Ensure it appears above other elements */
+  margin: 0;
+  padding: 0;
+}
+
+
+.reaction-btn button{
+  border: none;
+  background-color: rgb(38, 36, 36);
+  border-radius: 20px;
+}
+
+.reaction-btn{
+  transform: translateY(90%);
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Example Modal CSS */
+.reaction-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reaction-modal-content {
+  background-color: rgb(63, 58, 58);
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+.reaction-modal ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reaction-modal ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.reaction-modal ul li img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.reaction-close-btn{
+  background-color: rgb(63, 58, 58);
+  border: none;
+}

@@ -1,0 +1,15 @@
+
+<div class="container-fluid">
+    <div class="title">
+        <h1>Message will be sent individually to:</h1>
+    </div>
+    <div class="list d-flex flex-wrap justify-content-between">
+        <div *ngFor="let participant of participants" class="flex-item">
+          <app-broadcast-member
+            [username]="participant.username"
+            [fullName]="participant.full_name"
+            [profilePic]="participant.profile_pic">
+          </app-broadcast-member>
+        </div>
+      </div>
+</div>

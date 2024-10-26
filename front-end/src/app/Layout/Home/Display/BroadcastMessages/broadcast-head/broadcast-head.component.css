@@ -1,0 +1,10 @@
+.container-fluid {
+    display: flex;
+    align-items: center; /* Vertically centers items */
+    flex-direction: row; /* Aligns items in a row */
+    height: 100%; /* Set height to 100% of the parent element */
+}
+
+.logo{
+    padding: 0 15px;
+}

@@ -1,0 +1,17 @@
+/* Container-fluid taking full height */.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and borders are included in height calculation */
+}
+
+.message-container {
+    height: 88%;
+    overflow-y: auto; /* Add scroll if the content exceeds the container height */
+}
+
+.message-input{
+    height: 12%;
+}

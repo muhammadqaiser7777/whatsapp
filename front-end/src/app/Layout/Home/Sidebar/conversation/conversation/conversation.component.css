@@ -1,0 +1,80 @@
+/* Common styles */
+.conversation {
+    display: flex;
+    width: 97%;
+    padding: 10px;
+    border-bottom: 1px solid #504c4c;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #242424;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+/* Hover effect */
+.conversation:hover {
+    background-color: #585858;
+}
+
+/* Selected conversation */
+.conversation.selected {
+    background-color: #585858;
+}
+
+/* Remove animation for the selected state */
+.conversation.selected {
+    transition: none;
+}
+
+/* Profile picture */
+.conversation img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* Conversation details */
+.conversation-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.conversation-details h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #fcfbfb;
+    font-weight: bold;
+}
+
+.conversation-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #cecaca;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Time and date */
+.conversation-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #cecaca;
+}
+
+.conversation-time .time {
+    font-size: 14px;
+    color: #cecaca;
+    margin-bottom: 5px;
+}
+
+.conversation-time .date {
+    font-size: 12px;
+    color: #cecaca;
+}

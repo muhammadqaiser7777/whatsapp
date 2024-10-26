@@ -1,0 +1,28 @@
+<!-- Show loading message if the data is still being fetched -->
+<div *ngIf="isLoading" class="loading">
+    <div class="loader">
+        <h1>L
+        <div class="spinner"></div>
+        ading ...</h1>
+      </div>
+</div>
+
+<!-- Show error message if there was an error fetching the conversations -->
+<div *ngIf="isError" class="error">
+  Failed to load conversations. Please try again.
+</div>
+
+<!-- Show "No conversations" message if loading is complete, no error, and the list is empty -->
+<div *ngIf="!isLoading && !isError && conversations.length === 0" class="no-conversations">
+  No conversations available.
+</div>
+
+<!-- Loop through and display conversations if loading is complete, no error, and the list is not empty -->
+<div *ngIf="!isLoading && !isError && conversations.length > 0">
+  <div *ngFor="let conversation of conversations" class="list">
+    <app-conversation 
+      [conversation]="conversation" 
+      [messageType]="conversation.messageType">
+    </app-conversation>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+        <button class="close" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+        </button>
+      <h2 *ngIf="selectedIndex === 0">Create Group</h2>
+      <h2 *ngIf="selectedIndex === 1">Create Broadcast</h2>
+  
+      <div *ngIf="selectedIndex === 0">
+        <label for="groupName">Group Name:</label>
+        <input id="groupName" type="text" [(ngModel)]="groupName" required autocomplete="off"/>
+        <br>
+        <label for="groupName">Group Profile:</label>
+            <input type="file" #fileInput name="media">
+            <span>(Optional)</span>          
+      </div>
+      
+      <div *ngIf="selectedIndex === 1">
+        <label for="broadcastName">Broadcast Name:</label>
+        <input id="broadcastName" type="text" [(ngModel)]="broadcastName" required autocomplete="off"/>
+      </div>
+  
+      <button *ngIf="selectedIndex === 0" (click)="createGroup()" class="submit" [disabled]="!groupName" >Create Group</button>
+      <button *ngIf="selectedIndex === 1" (click)="createBroadcast()" class="submit" [disabled]="!broadcastName" >Create Broadcast</button>
+
+    </div>
+  </div>
+  

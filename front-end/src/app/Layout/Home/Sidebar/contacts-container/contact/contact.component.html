@@ -1,0 +1,6 @@
+<div class="contact" (click)="onContactClick()" [ngClass]="{'selected': isSelected()}">
+  <img [src]="profilePic" alt="Profile Picture" class="profile-pic">
+  <div class="contact-info">
+    <h2>{{ contact.fullName }}</h2>
+  </div>
+</div>

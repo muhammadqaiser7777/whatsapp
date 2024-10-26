@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div *ngIf="isLoading" class="loading">
+        <div class="loader">
+        <h1>L
+        <div class="spinner"></div>
+        ading ...</h1>
+      </div>
+    </div>
+    <div *ngIf="!isLoading && groupList.length === 0">You are not a member of any group</div>
+    <div *ngIf="isError">Failed to load groups.</div>
+    <app-group *ngIf="groupList.length > 0" [groupList]="groupList"></app-group>
+</div>

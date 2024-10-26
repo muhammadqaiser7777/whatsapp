@@ -1,0 +1,20 @@
+<div class="container-fluid">
+
+    <div class="show">
+      <img class='profile-pic' [src]="profilePicUrl" alt="Profile Picture"><br><br><br><br><br><br>
+      <h1>Name: {{ fullName }}</h1><br><br>
+      <h3 class="username">Username: {{ username }} <span>(Unchangeable)</span></h3>
+    </div>
+  
+    <div class="edit">
+      <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+        <h2>Name:</h2>
+        <input type="text" name="fullName" style="color: #628722;" id="fullName" [(ngModel)]="fullName" placeholder="{{ fullName }}" autocomplete="off">
+        <h2>Profile:</h2>
+        <input type="file" name="profilePic" id="profilePic" accept=".jpg, .jpeg, .png, .gif" (change)="onFileSelected($event)">
+        <br><br>
+        <button class="submit" type="submit" [disabled]="!fullName && !profilePicUrl">Submit</button>
+      </form>
+    </div>
+  </div>
+  

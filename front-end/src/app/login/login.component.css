@@ -1,0 +1,82 @@
+.container-fluid.min-vh-100{
+    background: url("../../../public/assets/images/background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    /* Login Container Styling */
+    .login-container {
+      /* From https://css.glass */
+      background: rgba(255, 255, 255, 0.19);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(4.5px);
+      -webkit-backdrop-filter: blur(4.5px);
+      max-width: 350px;
+      width: 100%;
+      color: #fff;
+    }
+    
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .main-heading{
+text-align: center;    }
+    
+    .title {
+      color: #026e19;
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid #444;
+    }
+    
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      box-shadow: 0 0 0 0.2rem #26802c;
+      border-color: #26802c;
+    }
+  
+    div.form-group.text-center{
+      padding: 10px;
+    }
+  
+    div.form-group.text-center a {
+      text-decoration: none;
+      color: #fff;
+    }
+    
+    div.form-group.text-center a:hover {
+      text-decoration: underline;
+      color: #026e19;
+      padding: 4px;
+    }
+    
+    ::placeholder {
+      color: #ccc;
+    }
+    
+    
+    .btn {
+      background-color: #026e19;
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+  }
+  
+  .btn:hover {
+      background-color: #025c12;
+  }

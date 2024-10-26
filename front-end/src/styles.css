@@ -1,0 +1,29 @@
+/* Import emoji picker styles */
+@import '@ctrl/ngx-emoji-mart/picker';
+
+body{
+	font-family: "Twemoji", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne", "JoyPixels", "Arial", sans-serif;
+}
+
+/* Dark mode looking scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #121212;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #242424;
+}
+
+/* Optionally, you can add more styles for the emoji picker if needed */
+.emoji-picker {
+	font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji", "EmojiOne", "JoyPixels", "Arial", sans-serif;
+}

@@ -1,0 +1,91 @@
+<div class="container-fluid min-vh-100">
+    <div class="signup-container p-4 rounded">
+      <div class="head">
+        <img src="assets/images/Whatsapp-logo.png" alt="WhatsApp Logo" height="200px">
+      </div>
+      <h1 class="main-heading">
+        Sign Up <span class="title"><b>WhatsApp</b></span>
+      </h1>
+      <form [formGroup]="signupForm" (ngSubmit)="onSignup()" autocomplete="off">
+        <div class="form-group">
+          <label for="full-name" class="label p-2">
+            <span class="text-base label-text">Full Name</span>
+          </label>
+          <input type="text" id="full-name" placeholder="John Doe" class="form-control" formControlName="fullName"/>
+          <div *ngIf="signupForm.get('fullName')?.hasError('required') && signupForm.get('fullName')?.touched" class="text-danger">
+            Full Name is required.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="username" class="label p-2">
+            <span class="text-base label-text">Username</span>
+          </label>
+          <input type="text" id="username" placeholder="johndoe" class="form-control" formControlName="username"/>
+          <div *ngIf="signupForm.get('username')?.hasError('required') && signupForm.get('username')?.touched" class="text-danger">
+            Username is required.
+          </div>
+          <div *ngIf="usernameError" class="text-danger">
+            {{ usernameError }}
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="password" class="label">
+            <span class="text-base label-text">Password</span>
+          </label>
+          <input type="password" id="password" placeholder="Enter Password" class="form-control" formControlName="password"/>
+          <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" class="text-danger">
+            Password is required.
+          </div>
+          <div *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched" class="text-danger">
+            Password must be at least 6 characters.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="confirm-password" class="label">
+            <span class="text-base label-text">Confirm Password</span>
+          </label>
+          <input type="password" id="confirm-password" placeholder="Confirm Password" class="form-control" formControlName="confirmPassword" />
+          <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched" class="text-danger">
+            Passwords do not match.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="label">
+            <span class="text-base label-text">Gender</span>
+          </label>
+          <div class="gender-options">
+            <div class="gender-option">
+              <input type="radio" id="male" name="gender" class="form-control" formControlName="gender" value="male" />
+              <label for="male" class="text-base">Male</label>
+            </div>
+            <div class="gender-option">
+              <input type="radio" id="female" name="gender" class="form-control" formControlName="gender" value="female" />
+              <label for="female" class="text-base">Female</label>
+            </div>
+            <div class="gender-option">
+              <input type="radio" id="other" name="gender" class="form-control" formControlName="gender" value="other" />
+              <label for="other" class="text-base">Other</label>
+            </div>
+          </div>
+          <div *ngIf="signupForm.get('gender')?.hasError('required') && signupForm.get('gender')?.touched" class="text-danger">
+            Gender is required.
+          </div>
+        </div>
+  
+        <div class="form-group text-center">
+          <a [routerLink]="['/login']">Already have an account? Login</a>
+        </div>
+  
+        <div class="mt-4">
+          <button type="submit" class="btn btn-block btn-sm border  hover:text-white" [disabled]="signupForm.invalid">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

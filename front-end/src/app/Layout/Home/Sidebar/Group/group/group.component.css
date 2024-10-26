@@ -1,0 +1,81 @@
+/* Styles for the group list */
+.group-list {
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  /* Each group item */
+  .group-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #242424;
+    border-bottom: 1px solid rgb(73, 84, 92);
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    margin: 3px;
+  }
+  
+  /* Selected group item */
+  .group-item.selected, .group-item:hover {
+    background-color: rgb(76, 73, 73);
+    color: rgb(158, 141, 141);
+  }
+  
+  /* Group icon container */
+  .group-icon img {
+    margin-right: 15px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+
+  
+  /* Group details */
+  .group-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  }
+  
+  /* Group name */
+  .group-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #c3c0c0;
+    margin-bottom: 5px;
+  }
+  
+  /* Last message */
+  .last-message {
+    font-size: 14px;
+    color: #c3c0c0;
+  }
+  
+  
+  .group-item.selected .last-message, .group-item.selected .group-name {
+    color: #c3c0c0;
+  }
+  
+/* Timestamp */
+.timestamp {
+  position: absolute;
+  right: 0; /* Align to the right */
+  top: 50%; /* Vertical center */
+  transform: translateY(-50%); /* Adjust to ensure proper centering */
+  font-size: 12px;
+  color: #c3c0c0;
+}
+
+.svg{
+  padding: 2.5px;
+}

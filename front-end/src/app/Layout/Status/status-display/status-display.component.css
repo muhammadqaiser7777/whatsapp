@@ -1,0 +1,499 @@
+.container-fluid{
+    height: 100vh;
+    width: 100%;
+    display: block;
+}
+
+.sample {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    color: white;
+    text-align: center;
+}
+
+.send{
+    height: 10vh;
+    max-height: 90vh;
+    z-index: 1000;
+}
+
+.heading {
+    color: green;
+    margin-bottom: 0.5rem;
+}
+
+
+.msg-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure it takes the full width */
+  padding: 0 10px;
+  background-color: #232121; /* Background color for the input container */
+  border-radius: 12px; /* Rounded corners for the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: relative; /* Allow positioning of emoji-mart */
+  z-index: 1; /* Ensure it stays on top */
+  box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+  padding: 8px 8px;
+}
+
+.emojis, .upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+}
+
+.dropdown-menu{
+  background-color: #232121; 
+}
+.dropdown-item{
+  color: white;
+}
+.dropdown-item:hover{
+  background-color: #2c2a2a;
+  cursor: pointer;
+}
+
+/* Styling for the message input */
+.msg-input {
+  flex: 1; /* Allow the input to take up remaining space */
+  resize: none; /* Prevent manual resizing */
+  border: 1px solid #534b4b; /* Light border */
+  border-radius: 8px;
+  outline: none;
+  color: #fefdfd; /* Dark text color */
+  background-color: transparent; /* Background color for the input field */
+  overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+  box-sizing: border-box; /* Include padding and borders in height calculation */
+  overflow-wrap: break-word;
+}
+
+/* Adjusting placeholder color */
+.msg-input::placeholder {
+  color: #fff; /* Placeholder text color */
+  opacity: 1;
+}
+
+.send-button {
+  width: 40px; /* Set width to 8% */
+  height: 40px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(26, 103, 26); /* Background color */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.send-button:disabled{
+  cursor: default;
+}
+
+.send-button:hover, .send-button-in-audio:hover,.preview-send-button:hover {
+  background-color: #154a1e; /* Background color on hover */
+  transition: 0.5s;
+}
+emoji-mart {
+  position: absolute;
+  left: 0%;
+  bottom: 100%;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.emoji-picker-in-preview{
+position: relative;
+right: 0%;
+top: -432px;
+z-index: 9999;
+}
+
+.file-preview-container {
+position: fixed;
+bottom: 0; /* Keep the bottom position fixed */
+width: fit-content;
+margin-bottom: 10%;
+z-index: 1000;
+background-color: rgb(74, 70, 70);
+padding: 10px;
+border-radius: 10px;
+max-height: 90%; /* Prevent overflow beyond the viewport */
+overflow-y: auto; /* Add a scrollbar if content exceeds max height */
+box-sizing: border-box; /* Include padding in height calculation */
+transition: height 0.3s ease-out; /* Smooth transition for height change */
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+flex-direction: column;
+overflow: visible;
+}
+
+.file-preview-image, .file-preview-video, .file-preview-document {
+  max-width: 100%;
+  width: fit-content;
+  max-height: 73vh;
+  border-radius: 10px;
+}
+
+.file-container {
+  flex: 1; /* Take up the remaining space */
+  padding: 10px;
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.file-preview-document p{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.caption-container {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  height: 12%; /* 12% of the height of the main container */
+  width: 100%; /* Full width of the main container */
+  position: relative; /* Position relative to its parent */
+  background-color: transparent; /* Optional background color */
+  overflow: visible;
+  }
+
+.caption-input {
+  flex: 0 1 90%; /* Takes 90% of the width */
+  color: #fff;
+  margin-right: 10px; /* Space between textarea and emoji picker */
+  padding: 8px;
+  border: 1px solid #afadad;
+  border-radius: 10px;
+  background-color: transparent;
+  resize: none; /* Prevent resizing */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.emojis,
+.perview-send-button {
+  flex: 0 1 5%; /* Each takes 5% of the width */
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border: none;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.perview-send-button{
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  background-color: rgb(26, 103, 26); /* Background color */
+}
+
+
+
+.close-button {
+  position: absolute;
+  z-index: 1000;
+  top: 5px;
+  right: 5px;
+  background: rgb(110, 109, 109);
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.close-button svg {
+  fill: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.emoji-picker-in-preview {
+  position: absolute;
+  top: calc(100%  10px); /* Position just above the emoji button */
+  bottom: 10%;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.send-button-in-audio{
+  margin-right: 20px;
+  bottom: 5px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(26, 103, 26); /* Background color */
+  border: none;
+  cursor: pointer; /* Pointer cursor on hover */
+  position: absolute;
+  right: 0;
+}
+
+.audio-send-button, .close-button-in-audio{
+  color: rgb(250, 253, 255);
+  border: none;
+  background-color: transparent;
+  padding: 5px;
+}
+
+
+.audio-close-button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(123, 114, 114);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.success-message {
+  position: fixed; /* or absolute, depending on your layout */
+  top: 12vh; /* Position from the top */
+  left: 62%; /* Position from the right */
+  background-color: green; /* Green background */
+  color: white; /* White text */
+  padding: 15px; /* Some padding */
+  border-radius: 5px; /* Rounded corners */
+  z-index: 1000; /* Ensure it’s on top of other elements */
+  transition: opacity 0.5s ease-in-out; /* Smooth fade-out effect */
+}
+
+.modal-dialog {
+  margin: 7% auto 7% auto;
+}
+
+/* Modal Style */
+.modal-content {
+  background-color: #242424;
+  color: white;
+}
+
+/* Styling for the remove-vote button */
+.remove-vote {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.remove-vote svg {
+  fill: red; /* Red close icon */
+  transition: fill 0.2s ease-in-out;
+}
+
+.remove-vote:hover svg {
+  fill: darkred;
+}
+
+/* Add some spacing between the input and the buttons */
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Styling for the submit button */
+.send-poll {
+  background-color: #28a745; /* Green background */
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.send-poll svg {
+  fill: white; /* White SVG icon */
+}
+
+.send-poll:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Style for the Close button in the header */
+.btn-close {
+  background-color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.btn-close:hover {
+  background-color: #f8f9fa; /* Slight gray hover effect */
+}
+
+/* Styling for the Add Option button */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+
+@media(max-width:750px){
+  .file-preview-container {
+      position: fixed;
+      width: 82%;
+      }
+      .success-message {
+      left: 30%;
+      }
+      .modal-dialog {
+        margin: 20% auto 10% auto;
+      }
+}
+
+.head{
+  top: 0;
+  height: 12vh;
+  width: 100%;
+  background-color: #1d1b1b;
+  color: white;
+  display: flex;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.sender-img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  margin: 10px;
+}
+
+.body-item{
+  top: 10vh;
+  height: 82vh; /* Adjust the height to fit within viewport */
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #242222;
+  margin: 10px;
+  overflow: hidden; /* Prevent vertical scrolling */
+}
+
+.img-status, .video-status{
+  border-radius: 10px;
+  margin: 5px;
+  height: 87%;
+  max-height: 85vh;
+  max-width: 76%;
+  object-fit: contain;
+}
+
+.counter{
+  top: 17vh;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+
+}
+
+.info{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  bottom: 25px;
+}
+
+.text-status, .status-caption, .counter{
+  background: linear-gradient(45deg, #f9d423, #ff4e50);
+  -webkit-background-clip: text; /* For Safari */
+  background-clip: text; /* Standard property */
+  color: transparent;
+  width: 80%;
+  word-break: break-all;
+}
+
+/* Customize the carousel control button area */
+.carousel-control-prev, .carousel-control-next {
+  margin-left: 10px;
+  width: 25px; /* Adjust the width to the desired size */
+  height: 60px; /* Adjust the height to the desired size */
+  padding: 0; /* Remove any padding */
+  background-color: transparent; /* Ensure the background is transparent */
+  border: none; /* Remove any borders */
+  top: 45%;
+  background-color: #0e0d0d;
+  border-radius: 5px;
+}
+
+/* Adjust the SVG icon to center inside the button */
+.carousel-control-prev svg, .carousel-control-next svg {
+  width: 32px; /* Keep the width of the SVG icon */
+  height: 32px; /* Keep the height of the SVG icon */
+}
+
+/* Position the buttons with proper spacing */
+.carousel-control-prev {
+  left: 10px; /* Adjust this value as needed for positioning */
+}
+
+.carousel-control-next {
+  right: 10px; /* Adjust this value as needed for positioning */
+}
+
+.back-btn {
+  display: none; /* Hide by default */
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.back-button{
+  display: none; /* Hide by default */
+  border: none;
+  background-color: transparent;
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10%;
+}
+
+@media (max-width: 750px) {
+  .back-btn,  .back-button{
+    display: inline-block; /* Show the button on smaller screens */
+  }
+  .file-preview-container{
+    width: 80%;
+  }
+}

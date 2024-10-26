@@ -1,0 +1,22 @@
+.container-fluid {
+    display: flex;
+    flex-direction: column; /* Arrange elements in a vertical column */
+    height: 80vh; /* 80% of the viewport height */
+}
+
+.title {
+    color: green;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    align-items: center; /* Vertically center the title */
+}
+
+.list.d-flex.flex-wrap.justify-content-between {
+    height: 85%; /* Remaining space under the title */
+    width: 100%;
+    overflow-y: auto; /* Make the list scrollable */
+    flex-grow: 1; /* Ensure the list takes up remaining space */
+}

@@ -1,0 +1,51 @@
+/* Common styles */
+.contact {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #504c4c;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #242424;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 3px 0;
+}
+
+/* Hover effect */
+.contact:hover {
+    background-color: #585858;
+}
+
+/* Selected conversation */
+.contact.selected {
+    background-color: #585858;
+}
+
+/* Remove animation for the selected state */
+.contact.selected {
+    transition: none;
+}
+
+/* Profile picture */
+.contact img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* Conversation details */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.contact-details h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #fcfbfb;
+    font-weight: bold;
+}

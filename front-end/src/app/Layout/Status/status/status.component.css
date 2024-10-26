@@ -1,0 +1,25 @@
+.container-fluid{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+}
+  
+.status-sidebar {
+    width: 30%;
+    height: 100vh;
+    border-right: 3px solid #474746;
+}
+
+.status-display{
+    width: 70%;
+    height: 100vh;
+}
+
+@media (max-width: 750px) {
+    .status-sidebar,  .status-display{
+      width: 100%;
+      margin-left: 6%;
+      margin-right: 0;
+    }
+  }

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <!-- Show sidebar on mobile if conditions are met, or show both components on desktop -->
+    <ng-container *ngIf="!isMobileView || shouldShowSidebar()">
+      <div class="status-sidebar">
+        <app-status-sidebar></app-status-sidebar>
+      </div>
+    </ng-container>
+  
+    <!-- Show display on mobile if conditions are met, or show both components on desktop -->
+    <ng-container *ngIf="!isMobileView || shouldShowDisplay()">
+      <div class="status-display">
+        <app-status-display></app-status-display>
+      </div>
+    </ng-container>
+  </div>
+  

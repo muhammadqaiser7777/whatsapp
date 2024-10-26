@@ -1,0 +1,21 @@
+<div class="group-list">
+  <div 
+    *ngFor="let group of groupList" 
+    class="group-item" 
+    (click)="onSelectGroup(group)" 
+    [class.selected]="group === selectedGroup"
+  >
+    <div class="group-icon">
+      <img [src]="group.path" alt="Group DP" width="40" height="40" />
+    </div>
+    <div class="group-details">
+      <div class="group-name">{{ group.group_name }}</div>
+      <div class="last-message">
+        <span>{{ group.last_message.sender_fullName }}: </span>
+        <span class="svg">{{ getLastMessage(group).message }}</span>
+        <span class="svg" [innerHTML]="getLastMessage(group).svg"></span>
+      </div>
+      <div class="timestamp">{{ formatTimestamp(group.last_message.updated_at) }}</div>
+    </div>
+  </div>
+</div>

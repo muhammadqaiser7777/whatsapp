@@ -1,0 +1,41 @@
+/* Styling the head */
+.head {
+    background-color: transparent;
+    width: 100%; /* Take 100% of the available width */
+    display: flex; /* Flexbox for horizontal alignment */
+    align-items: center; /* Center align the content vertically */
+    padding: 0 16px; /* Padding for the head area */
+    border-radius: 10px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width/height */
+    margin: 0; /* Remove any external margin */
+}
+
+/* Styling the heading inside the head */
+.head h4 {
+    margin: 0; /* Remove default margin */
+    color: #fff; /* White text color */
+}
+
+/* Styling the paragraph under heading */
+.head p {
+    margin: 0;
+    color: #767070;
+    font-size: 14px; /* Optional: adjust the font size */
+}
+
+/* Styling the profile picture */
+.profile-pic {
+    height: 50px;
+    width: 50px;
+    padding: 3px;
+    border-radius: 50%; /* Make the image circular */
+    margin-right: 16px; /* Space between image and text */
+}
+
+/* Hide the switch button by default */
+.switch {
+    color: aliceblue;
+    background-color: transparent;
+    border: none;
+    display: none; /* Hide the button */
+}
